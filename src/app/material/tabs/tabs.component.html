@@ -1,0 +1,138 @@
+<mat-card class="mb-2">
+  <mat-card-title>Tab Group Demo - Dynamic Tabs</mat-card-title>
+  <div class="mat-blue-grey">
+    <mat-card-title>Add New Tab</mat-card-title>
+    <mat-card-content>
+      <mat-checkbox [(ngModel)]="createWithLongContent">
+        Include extra content
+      </mat-checkbox>
+      <mat-checkbox [(ngModel)]="gotoNewTabAfterAdding">
+        Select after adding
+      </mat-checkbox>
+      <div>
+        Position:
+        <mat-form-field>
+          <input matInput type="number" [(ngModel)]="addTabPosition">
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="primary"
+              (click)="addTab(createWithLongContent)">
+        Add Tab
+      </button>
+    </mat-card-content>
+  </div>
+  <mat-card-content>
+    <mat-form-field>
+      <input matInput type="number" placeholder="Selected tab index" [(ngModel)]="activeTabIndex">
+    </mat-form-field>
+    <mat-card>
+      <mat-tab-group mat-dynamic-height [(selectedIndex)]="activeTabIndex">
+        <mat-tab *ngFor="let tab of dynamicTabs" [disabled]="tab.disabled">
+          <ng-template mat-tab-label>{{tab.label}}</ng-template>
+          <mat-card-content>
+            <p class="mb-1">{{tab.content}}</p>
+            <div *ngIf="tab.extraContent" class="mb-1">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis risus eget urna mollis ornare vel eu leo. Maecenas faucibus mollis interdum. Sed posuere consectetur est at lobortis. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+            </div>
+            <p>
+              <mat-form-field>
+                <input matInput placeholder="Tab Label" [(ngModel)]="tab.label">
+              </mat-form-field>
+            </p>
+            <button mat-raised-button color="primary" [disabled]="dynamicTabs.length == 1" (click)="deleteTab(tab)">Delete Tab</button>
+          </mat-card-content>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </mat-card-content>
+</mat-card>
+<mat-card class="mb-2">
+  <mat-card-title>Tab Group Demo - Dynamic Tabs</mat-card-title>
+  <mat-card-content>
+    <mat-card>
+      <mat-tab-group mat-dynamic-height>
+        <mat-tab *ngFor="let tab of tabs" [disabled]="tab.disabled">
+          <ng-template mat-tab-label>{{tab.label}}</ng-template>
+          <mat-card-content>
+            <p class="mb-1">{{tab.content}}</p>
+            <div *ngIf="tab.extraContent" class="mb-1">
+              Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Etiam porta sem malesuada magna mollis euismod. Vestibulum id ligula porta felis euismod semper. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+            </div>
+            <mat-form-field>
+              <input matInput placeholder="Tab Label" [(ngModel)]="tab.label">
+            </mat-form-field>
+          </mat-card-content>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </mat-card-content>
+</mat-card>
+<mat-card class="mb-2">
+  <mat-card-title>Tab Group Demo - Dynamic Tabs</mat-card-title>
+  <mat-card-content>
+    <mat-card>
+      <mat-tab-group style="height: 200px">
+        <mat-tab *ngFor="let tab of tabs" [disabled]="tab.disabled">
+          <ng-template mat-tab-label>{{tab.label}}</ng-template>
+          <mat-card-content>
+            <p class="mb-1">{{tab.content}}</p>
+            <div *ngIf="tab.extraContent" class="mb-1">
+              Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Etiam porta sem malesuada magna mollis euismod. Vestibulum id ligula porta felis euismod semper. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+            </div>
+            <mat-form-field>
+              <input matInput placeholder="Tab Label" [(ngModel)]="tab.label">
+            </mat-form-field>
+          </mat-card-content>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </mat-card-content>
+</mat-card>
+<mat-card class="mb-2">
+  <mat-card-title>Stretched Tabs</mat-card-title>
+  <mat-card-content>
+    <mat-card>
+      <mat-tab-group style="height: 200px" mat-stretch-tabs>
+        <mat-tab *ngFor="let tab of tabs" [disabled]="tab.disabled">
+          <ng-template mat-tab-label>{{tab.label}}</ng-template>
+          <mat-card-content>{{tab.content}}</mat-card-content>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </mat-card-content>
+</mat-card>
+<mat-card class="mb-2">
+  <mat-card-title>Async Tabs</mat-card-title>
+  <mat-card-content>
+    <mat-card>
+      <mat-tab-group>
+        <mat-tab *ngFor="let tab of asyncTabs | async; let i = index" [disabled]="i == 1">
+          <ng-template mat-tab-label>{{tab.label}}</ng-template>
+          <mat-card-content>
+            <p class="mb-2">{{tab.content}}</p>
+            <mat-form-field>
+              <input matInput placeholder="Tab Label" [(ngModel)]="tab.label">
+            </mat-form-field>
+          </mat-card-content>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </mat-card-content>
+</mat-card>
+<mat-card class="mb-2">
+  <mat-card-title>Tabs with simplified api</mat-card-title>
+  <mat-card-content>
+    <mat-card>
+      <mat-tab-group>
+        <mat-tab>
+          <ng-template mat-tab-label>Earth</ng-template>
+          <mat-card-content>This tab is about the Earth!</mat-card-content>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>Fire</ng-template>
+          <mat-card-content>This tab is about combustion!</mat-card-content>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </mat-card-content>
+</mat-card>

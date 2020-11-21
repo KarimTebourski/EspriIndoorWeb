@@ -1,0 +1,20 @@
+<mat-card>
+    <mat-card-title>
+        <h5 class="mt-0">Gallery Simple</h5>
+    </mat-card-title>
+    <hr>
+    <div class="mb-2"></div>
+    <div fxLayout="row wrap">
+        <div fxFlex.md="33.33" fxFlex.lg="33.33" fxFlex.xl="33.33" *ngFor="let id of images" class="mat-pad mb-1">
+            <div class="hover-parent">
+                <img src="assets/images/unsplash/{{id}}.jpg" alt="Card image cap" />
+                <div class="hover-overlay">
+                    <div class="hover-overlay-content">
+                        <h3 mat-line>Blue Sky</h3>
+                        <span mat-line>Gallery image: {{ id }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-card>

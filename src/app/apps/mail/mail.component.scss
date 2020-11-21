@@ -1,0 +1,39 @@
+@import "../../../assets/styles/scss/components/messages";
+:host {
+    margin-left: -5px;
+    margin-right: -5px;
+    margin-top: -5px;
+    display: block;
+}
+
+:host /deep/ {
+    mat-sidenav {
+        width: 200px;
+    }
+    .mat-sidenav-content {
+        padding: 0;
+    }
+    @media (min-width: 959px) {
+        .mat-sidenav-side {
+            background-color: transparent;
+            box-shadow: none!important;
+        }
+    }
+}
+
+.mat-expansion-panel-header-description {
+    color: rgba(0, 0, 0, 87);
+}
+
+.text-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mat-content {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    overflow: hidden;
+}

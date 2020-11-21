@@ -1,0 +1,240 @@
+<!-- <div fxLayout="row wrap">
+   <div fxFlex.sm="100" fxFlex.xs="100" fxFlex.md="33.33" fxFlex.lg="33.33" fxFlex.xl="33.33" fxFlex="100" class="m-gap p-gap">
+      <mat-card>
+         <div class="card-wheather grad-blue sm-disable" >
+            <div class="city" >New Users</div>
+            <div class="date">This Week</div>
+            <div class="weather">
+               <div class="sun d-flex justify-content-between">
+                  <i class="fa fa-shopping-bag fa-3x align-self-center"></i>
+                  <div class="temp align-self-center">190</div>
+               </div>
+            </div>
+         </div>
+      </mat-card>
+   </div>
+-->
+<mat-form-field>
+      <mat-label>Filter</mat-label>
+   <label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="user Name">
+   </label>
+</mat-form-field>
+
+   <table mat-table [dataSource]="dataTable" class="mat-elevation-z8 " >
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="userName">
+         <th mat-header-cell *matHeaderCellDef> User name </th>
+         <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+      </ng-container>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="firstName">
+         <th mat-header-cell *matHeaderCellDef> First Name </th>
+         <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="lastName">
+         <th mat-header-cell *matHeaderCellDef> Last name </th>
+         <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="email">
+         <th mat-header-cell *matHeaderCellDef> Email </th>
+         <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="heatMap">
+         <th mat-header-cell *matHeaderCellDef> HeatMap </th>
+         <td mat-cell *matCellDef="let element">
+            <button mat-raised-button color="primary"
+                    (click)="getRecord(element.idaUuid)">Get HeatMap</button>
+         </td>
+      </ng-container>
+
+      <ng-container matColumnDef="statistical">
+         <th mat-header-cell *matHeaderCellDef> statistical </th>
+         <td mat-cell *matCellDef="let element">
+            <button mat-raised-button color="primary"
+                    (click)="getRecord1(element.idaUuid)">Statistical</button>
+         </td>
+      </ng-container>
+
+      <tr mat-header-row class="table_blue"  *matHeaderRowDef="displayedColumns "></tr>
+      <tr mat-row (mouseover)="highlightRow(row)" [ngClass]="{'make-gold': row.userName == userName }" *matRowDef="let row; columns: displayedColumns; "
+          (click)="onRowClicked(row)"
+      ></tr>
+   </table>
+<div>
+   <mat-card>
+      <div class="card-comment-widget grad-red">
+         <h5 class="color-blue">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</h5>
+          <h2>📘 Détails </h2>
+         <h3 class="color-blue">👔 ‍Student</h3>
+         <h3  class="color-email">👤 User name : {{userName}}</h3>
+         <h3 class="color-email">📋 First name : {{firstName}}</h3>
+         <h3 class="color-email">📋 Last name : {{lastName}}</h3>
+         <h3 class="color-email">✉ Email : {{email}}</h3>
+         <h3 class="color-email">⌚ Joined at : {{createdAt | date:'MM/dd/yyyy h:mm:ss a'}}</h3>
+         <h5 class="color-blue">-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</h5>
+      </div>
+   </mat-card>
+</div>
+   <!-- <div fxFlex.sm="100" fxFlex.xs="100" fxFlex.md="33.33" fxFlex.lg="33.33" fxFlex.xl="33.33" fxFlex="100" class="m-gap p-gap">
+       <mat-card>
+          <div class="card-wheather grad-green">
+             <div class="city">Total Users</div>
+             <div class="date">This Week</div>
+             <div class="weather">
+                <div class="sun d-flex justify-content-between">
+                   <i class="fa fa fa-users fa-3x align-self-center"></i>
+                   <div class="temp align-self-center">987</div>
+                </div>
+             </div>
+          </div>
+       </mat-card>
+    </div>
+    <div fxFlex.sm="100" fxFlex.xs="100" fxFlex.md="33.33" fxFlex.lg="33.33" fxFlex.xl="33.33" fxFlex="100" class="m-gap p-gap">
+       <mat-card>
+          <div class="card-wheather grad-red">
+             <div class="city">Active Users</div>
+             <div class="date">This Week</div>
+             <div class="weather">
+                <div class="sun d-flex justify-content-between">
+                   <i class="fa fa-inbox fa-3x align-self-center"></i>
+                   <div class="temp align-self-center">236</div>
+                </div>
+             </div>
+          </div>
+       </mat-card>
+    </div>
+ </div>
+ <div fxLayout="row wrap">
+    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100" class="m-gap p-gap">
+       <mat-card>
+          <mat-card-title fxLayout="row" fxLayoutAlign="start center">
+             Total Users &nbsp;
+             <span fxFlex></span>
+             <button mat-icon-button mat-button-sm [mat-menu-trigger-for]="card2" aria-label="Open card menu">
+                <mat-icon>more_vert</mat-icon>
+             </button>
+          </mat-card-title>
+          <hr>
+          <mat-card-content>
+             <div class="w-100 h-300px">
+                <ngx-charts-area-chart [scheme]="colorScheme" [results]="multi" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [autoScale]="autoScale" (select)="onSelect($event)">
+                </ngx-charts-area-chart>
+             </div>
+          </mat-card-content>
+       </mat-card>
+    </div>
+    <div fxFlex.gt-sm="33.33%" fxFlex="100" class="m-gap p-gap">
+       <mat-card>
+          <mat-card-title fxLayout="row" fxLayoutAlign="start center">
+             Revenue &nbsp;
+             <span fxFlex></span>
+             <button mat-icon-button mat-button-sm [mat-menu-trigger-for]="card1" aria-label="Open card menu">
+                <mat-icon>more_vert</mat-icon>
+             </button>
+          </mat-card-title>
+          <mat-menu #card1="matMenu" x-position="before">
+             <button mat-menu-item>
+                <mat-icon>settings</mat-icon>
+                Settings
+             </button>
+             <button mat-menu-item>
+                <mat-icon>more</mat-icon>
+                View More
+             </button>
+             <button mat-menu-item>
+                <mat-icon>notifications_off</mat-icon>
+                Disable notifications
+             </button>
+             <button mat-menu-item>
+                <mat-icon>exit_to_app</mat-icon>
+                Remove Panel
+             </button>
+          </mat-menu>
+          <hr>
+          <mat-card-content>
+             <canvas height="200" baseChart class="chart"
+             [data]="pieChartData"
+             [options]="doughnutOptions"
+             [colors]="doughnutChartColors"
+             [labels]="pieChartLabels"
+             [chartType]="pieChartType"></canvas>
+          </mat-card-content>
+       </mat-card>
+    </div>
+    <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="50" fxFlex="100" class="m-gap p-gap">
+       <mat-card>
+          <mat-card-title fxLayout="row" fxLayoutAlign="start center">
+             Yearly Sales &nbsp;
+             <span fxFlex></span>
+             <button mat-icon-button mat-button-sm [mat-menu-trigger-for]="card2" aria-label="Open card menu">
+                <mat-icon>more_vert</mat-icon>
+             </button>
+          </mat-card-title>
+          <mat-menu #card2="matMenu" x-position="before">
+             <button mat-menu-item>
+                <mat-icon>settings</mat-icon>
+                Settings
+             </button>
+             <button mat-menu-item>
+                <mat-icon>more</mat-icon>
+                View More
+             </button>
+             <button mat-menu-item>
+                <mat-icon>notifications_off</mat-icon>
+                Disable notifications
+             </button>
+             <button mat-menu-item>
+                <mat-icon>exit_to_app</mat-icon>
+                Remove Panel
+             </button>
+          </mat-menu>
+          <hr>
+          <mat-card-content>
+             <canvas height="200" baseChart class="chart" [datasets]="ComboChartData" [labels]="comboChartLabels" [options]="ComboChartOptions" [colors]="chartColors" [legend]="comboChartLegend" [chartType]="barChartType"></canvas>
+          </mat-card-content>
+       </mat-card>
+    </div>
+    <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="50" fxFlex="100" class="m-gap p-gap">
+       <mat-card>
+          <mat-card-title fxLayout="row" fxLayoutAlign="start center">
+             Sales Report &nbsp;
+             <span fxFlex></span>
+             <button mat-icon-button mat-button-sm [mat-menu-trigger-for]="card3" aria-label="Open card menu">
+                <mat-icon>more_vert</mat-icon>
+             </button>
+          </mat-card-title>
+          <mat-menu #card3="matMenu" x-position="before">
+             <button mat-menu-item>
+                <mat-icon>settings</mat-icon>
+                Settings
+             </button>
+             <button mat-menu-item>
+                <mat-icon>more</mat-icon>
+                View More
+             </button>
+             <button mat-menu-item>
+                <mat-icon>notifications_off</mat-icon>
+                Disable notifications
+             </button>
+             <button mat-menu-item>
+                <mat-icon>exit_to_app</mat-icon>
+                Remove Panel
+             </button>
+          </mat-menu>
+          <hr>
+          <mat-card-content>
+             <canvas height="200" baseChart class="chart" [datasets]="bubbleChartData" [labels]="comboChartLabels" [options]="ComboChartOptions" [colors]="chartColors" [legend]="comboChartLegend" [chartType]="bubbleChartType"></canvas>
+          </mat-card-content>
+       </mat-card>
+    </div>
+
+ </div>
+  -->

@@ -1,0 +1,11 @@
+
+<mat-card>
+    <mat-card-title>Font Awesome Icons</mat-card-title>
+    <mat-card-subtitle>Use any of theme</mat-card-subtitle>
+    <hr>
+    <div class="card-container" fxLayout="row wrap">
+    <span class="mb-2 text-center hover-icon" *ngFor = "let icon of icons" fxFlex.xs="50" fxFlex.sm="50" fxFlex.md="25" fxFlex.lg="25" fxFlex.xl="25">
+        <i class="fa-2x fa {{icon}}"></i>
+    </span> 
+    </div>
+</mat-card>

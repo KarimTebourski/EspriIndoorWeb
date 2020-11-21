@@ -1,0 +1,30 @@
+<div fxLayout="row wrap">
+    <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" fxFlex="100" class="m-gap p-gap">
+        <mat-card class="mb-1">
+            <mat-card-title>Project 1</mat-card-title>
+            <mat-card-subtitle>Drag and drop following lists</mat-card-subtitle>
+            <hr>
+            <mat-list [dragula]='"dragable-bag"'>
+                <mat-list-item *ngFor="let grp of group1">
+                    {{ grp.name }}
+                    <i class="fa fa-arrows-alt ml-1 mr-1" aria-hidden="true"></i>
+                </mat-list-item>
+            </mat-list>
+        </mat-card>
+    </div>
+    <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" fxFlex="100" class="m-gap p-gap">
+        <mat-card class="mb-1">
+            <mat-card-title>Project 2</mat-card-title>
+            <mat-card-subtitle>Drag and drop following lists</mat-card-subtitle>
+            <hr>
+            <mat-list [dragula]='"dragable-bag"'>
+                <mat-list-item *ngFor="let grp2 of group2">
+                    <div class="d-flex w-100 justify-content-between">
+                        {{ grp2.name }}
+                        <i class="fa fa-arrows-alt ml-1 mr-1" aria-hidden="true"></i>
+                    </div>
+                </mat-list-item>
+            </mat-list>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<mat-card>
+    <mat-card-title>Select</mat-card-title>
+    <mat-card-subtitle>Select buttons allow the user to select one option from a set</mat-card-subtitle>
+    <hr>
+    <mat-card-content>
+        <mat-form-field>
+            <mat-select placeholder="Drink" [(ngModel)]="currentDrink" [required]="isRequired" [disabled]="isDisabled" #drinkControl="ngModel">
+                <mat-option *ngFor="let drink of drinks" [value]="drink.value" [disabled]="drink.disabled">
+                    {{ drink.viewValue }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <p> Value: {{ currentDrink }} </p>
+        <p> Touched: {{ drinkControl.touched }} </p>
+        <p> Dirty: {{ drinkControl.dirty }} </p>
+        <p> Status: {{ drinkControl.control?.status }} </p>
+        <button class="mr-1" mat-flat-button color="primary" (click)="currentDrink='sprite-1'">SET VALUE</button>
+        <button class="mr-1" mat-flat-button color="primary" (click)="isRequired=!isRequired">TOGGLE REQUIRED</button>
+        <button class="mr-1" mat-flat-button color="primary" (click)="isDisabled=!isDisabled">TOGGLE DISABLED</button>
+        <button class="mr-1" mat-flat-button color="primary" (click)="drinkControl.reset()">RESET</button>
+    </mat-card-content>
+</mat-card>

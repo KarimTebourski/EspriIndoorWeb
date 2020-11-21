@@ -1,0 +1,44 @@
+<div fxLayout="row wrap">
+    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+        <mat-card>
+            <mat-card-title>Mixed Chart 1</mat-card-title>
+            <mat-card-subtitle></mat-card-subtitle>
+            <hr>
+            <mat-card-content>
+                <div class="w-100 h-300px">
+                    <ngx-charts-tree-map [scheme]="colorScheme" [results]="single" (select)="onSelect($event)">
+                    </ngx-charts-tree-map>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+        <mat-card>
+            <mat-card-title>Mixed Chart 2</mat-card-title>
+            <mat-card-subtitle></mat-card-subtitle>
+            <hr>
+            <mat-card-content>
+                <div class="w-100 h-300px">
+                    <ngx-charts-number-card [scheme]="colorScheme" [results]="single" (select)="onSelect($event)">
+                    </ngx-charts-number-card>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+        <mat-card>
+            <mat-card-title>Mixed Chart 3</mat-card-title>
+            <mat-card-subtitle></mat-card-subtitle>
+            <hr>
+            <mat-card-content>
+                <div class="w-100 h-300px">
+
+                    <ngx-charts-gauge [scheme]="colorScheme" [results]="single" [min]="0" [max]="100" [angleSpan]="240" [startAngle]="-120" [units]="'alerts'" [bigSegments]="10" [smallSegments]="5" (select)="onSelect($event)">
+                    </ngx-charts-gauge>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<mat-card>
+    <mat-card-title>Material Icons</mat-card-title>
+    <mat-card-subtitle>Use any of theme</mat-card-subtitle>
+    <hr>
+    <div class="card-container" fxLayout="row wrap">
+        <div class="text-center mb-2 hover-icon" *ngFor="let icon of icons" fxFlex.xs="50" fxFlex.sm="50" fxFlex.md="25" fxFlex.lg="25" fxFlex.xl="25">
+            <mat-icon>{{ icon }}</mat-icon> <span class="d-block">{{ icon }}</span>
+        </div>
+    </div>
+</mat-card>

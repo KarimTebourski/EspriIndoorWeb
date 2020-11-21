@@ -1,0 +1,40 @@
+<div fxLayout="row wrap" class="user-list-wrapper">
+    <div class="user-card-w" fxFlex.sm="33.33" fxFlex.md="33.33" fxFlex.lg="33.33" fxFlex.xl="33.33" *ngFor="let user of users">
+        <div class="user-list-card">
+            <div class="user-card-cover" style="background-image:url(assets/images/night.jpg)">
+                <div>
+                    <div class="text-center user-thumb">
+                        <img class="img-responsive img-circle" src="{{user.image}}" width="120" height="120" alt="user list image">
+                    </div>
+
+                </div>
+            </div>
+            <div class="user-content">
+                <div class="pad-wrap d-flex justify-content-between mb-1">
+                    <div>
+                        <h4 class="user-name text-primary">{{user.name}}</h4>
+                        <span class="silk-block mb-1">{{user.post}}</span>
+                    </div>
+                    <div class="align-self-center">
+                        <button type="button" class="UserActions-editButton edit-button EdgeButton EdgeButton--tertiary" data-scribe-element="profile_edit_button">
+            <span class="button-text">Accept</span>
+            </button>
+                        <button type="button" class="UserActions-editButton edit-button EdgeButton EdgeButton--tertiary btn-red" data-scribe-element="profile_edit_button">
+            <span class="button-text">Reject</span>
+            </button>
+                    </div>
+                </div>
+                <span class="d-flex mb-2">
+               <mat-icon>location_on</mat-icon>
+               {{user.city}}, {{user.country}}
+            </span>
+                <div class="user-card-info">
+                    <ul class="user-card-stats pl-0">
+                        <li><a href="">Tweets<span class="block text-lg-center">217</span></a></li>
+                        <li><a href="">Followings<span class="block text-lg-center">89</span></a></li>
+                        <li><a href="">Followers<span class="block text-lg-center">78,6790</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>

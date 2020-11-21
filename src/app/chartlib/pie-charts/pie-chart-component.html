@@ -1,0 +1,41 @@
+<div  fxLayout="row wrap">
+   <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+      <mat-card>
+         <mat-card-title>Pie Chart 1</mat-card-title>
+         <mat-card-subtitle></mat-card-subtitle>
+         <hr>
+         <mat-card-content>
+                <div class="w-100 h-300px">
+                    <ngx-charts-pie-chart [scheme]="colorScheme" [results]="single" [legend]="showLegend" [explodeSlices]="explodeSlices" [labels]="showLabels" [doughnut]="doughnut" [gradient]="gradient" (select)="onSelect($event)">
+                    </ngx-charts-pie-chart>
+                </div>
+          </mat-card-content>
+       </mat-card>
+    </div>
+    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+      <mat-card>
+         <mat-card-title>Pie Chart 2</mat-card-title>
+         <mat-card-subtitle></mat-card-subtitle>
+         <hr>
+         <mat-card-content>
+                <div class="w-100 h-300px">
+                    <ngx-charts-advanced-pie-chart [scheme]="colorScheme" [results]="single" [gradient]="gradient" (select)="onSelect($event)">
+                    </ngx-charts-advanced-pie-chart>
+                </div>
+          </mat-card-content>
+        </mat-card>
+    </div>
+     <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+      <mat-card>
+         <mat-card-title>Pie Chart 3</mat-card-title>
+         <mat-card-subtitle></mat-card-subtitle>
+         <hr>
+         <mat-card-content>
+                <div class="w-100 h-300px">
+                    <ngx-charts-pie-grid [scheme]="colorScheme" [results]="single" (select)="onSelect($event)">
+                    </ngx-charts-pie-grid>
+                </div>
+          </mat-card-content>
+         </mat-card>
+    </div>
+</div>

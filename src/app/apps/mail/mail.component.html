@@ -1,0 +1,136 @@
+<mat-sidenav-container class="app-inner background-none shadow-none mail-db">
+   <mat-sidenav #mailnav [mode]="isOver() ? 'over' : 'side'" [opened]="!isOver()" class="mail-sidebar pl-xs pr-xs">
+   <mat-nav-list class="messages-nav">
+      <button _ngcontent-c21="" class="compose-btn mat-warn mat-raised-button mb-1"> <span>New Mail</span></button>
+      <a href="javascript:;" mat-list-item>
+         <mat-icon class="mat-text-muted">inbox</mat-icon>
+         <span>Inbox</span>
+      </a>
+      <a href="javascript:;" mat-list-item>
+         <mat-icon class="mat-text-muted">send</mat-icon>
+         <span>Sent</span>
+      </a>
+      <a href="javascript:;" mat-list-item>
+         <mat-icon class="mat-text-muted">drafts</mat-icon>
+         <span>Draft</span>
+      </a>
+      <a href="javascript:;" mat-list-item>
+         <mat-icon class="mat-text-muted">stars</mat-icon>
+         <span>Important</span>
+      </a>
+      <a href="javascript:;" mat-list-item>
+         <mat-icon class="mat-text-muted">error</mat-icon>
+         <span>Spam</span>
+      </a>
+      <a href="javascript:;" mat-list-item>
+         <mat-icon class="mat-text-muted">delete</mat-icon>
+         <span>Trash</span>
+      </a>
+      <mat-divider></mat-divider>
+   </mat-nav-list>
+   </mat-sidenav>
+   <mat-toolbar color="primary" fxHide="false" fxHide.gt-sm>
+      <button (click)="mailnav.toggle()" mat-icon-button>
+         <mat-icon>short_text</mat-icon>
+      </button>
+      <span class="mr-1 ml-1">Mailbox</span>
+   </mat-toolbar>
+   <div class="main-content" fxLayout="row" fxLayoutAlign="center start">
+      <div fxFlex.gt-sm="90" fxFlex.gt-xs="95" fxFlex="100">
+         <div class="messages-list">
+            <mat-accordion>
+               <mat-expansion-panel *ngFor="let message of messages">
+                  <mat-expansion-panel-header>
+                    
+                    <div class="mat-content">
+                     <div class="w-100">
+                        <div *ngIf="!message.icon" class="hide-on-open img-thumb">
+                           <img alt="" class="message-icon" src="{{message.avatar}}" />
+                        </div>
+                        <div *ngIf="message.icon" class="hide-on-open">
+                           <mat-icon [ngClass]="message.iconClass" class="mr-1">{{message.icon}}</mat-icon>
+                        </div>
+                        <div class="pr-1 hide-on-open name-user" style="min-width: 150px;">
+                           <span>{{message.from}}</span>
+                        </div>
+                   
+                  
+                        <div class="text-ellipsis">
+                           <span>{{message.subject}}</span>
+                        </div>
+                        <span fxFlex></span>
+                        <div class="pl-1 text-xs-right text-ellipsis hide-on-open" fxShow="false" fxShow.gt-sm>
+                           <small class="text-xs-muted">{{ message.date | date: 'fullDate' }}</small>
+                        </div>
+                        </div>
+                      </div>
+                  </mat-expansion-panel-header>
+                  <div>
+                     <mat-card class="p-2">
+                        <mat-card-header>
+                           <img mat-card-avatar *ngIf="message.icon" src="{{message.avatar}}" class="ml-0">
+                           <mat-icon *ngIf="message.icon" mat-card-avatar [ngClass]="message.iconClass" class="ml-1">{{message.icon}}</mat-icon>
+                           <mat-card-title>{{message.from}}</mat-card-title>
+                           <mat-card-subtitle>{{message.date | date: 'fullDate'}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content class="pl-0">
+                           <div [innerHTML]="message.body"></div>
+                        </mat-card-content>
+                     </mat-card>
+                  </div>
+               </mat-expansion-panel>
+            </mat-accordion>
+            <!--         <mat-list appAccordion>
+               <mat-list-item (click)="onSelect(message)" *ngFor="let message of messages; let i = index" [class.selected]="message === selectedMessage" appAccordionLink>
+                 <div fxLayout="row" fxLayoutAlign="start center">
+                   <div fxLayout="row" fxLayoutAlign="start center" appAccordionToggle>
+                     <div *ngIf="!message.icon" class="pr-1 hide-on-open">
+                       <img alt="" class="message-icon" src="{{message.avatar}}"/>
+                     </div>
+                     <div *ngIf="message.icon" class="pr-1 hide-on-open">
+                       <mat-icon [ngClass]="message.iconClass">{{message.icon}}</mat-icon>
+                     </div>
+                     <div class="pr-1 hide-on-open" style="min-width: 120px;">
+                       <span>{{message.from}}</span>
+                     </div>
+                     <div>
+                       <span>{{message.subject}}</span>
+                     </div>
+                   </div>
+                   <span fxFlex></span>
+                   <div class="pl-1 text-xs-right hide-on-open" fxShow="false" fxShow.gt-sm>
+                     <small class="text-xs-muted">{{ message.date | date: 'fullDate' }}</small>
+                   </div>
+                   <div class="show-on-open">
+                     <button mat-icon-button><mat-icon>archive</mat-icon></button>
+                     <button mat-icon-button><mat-icon>delete</mat-icon></button>
+                     <button mat-icon-button><mat-icon>email</mat-icon></button>
+                     <button mat-icon-button><mat-icon>folder_special</mat-icon></button>
+                   </div>
+                   <button mat-icon-button [mat-menu-trigger-for]="menu"><mat-icon>more_vert</mat-icon></button>
+                   <mat-menu #menu="matMenu" x-position="before">
+                     <button mat-menu-item>Reply</button>
+                     <button mat-menu-item disabled>Archive</button>
+                     <button mat-menu-item>Delete</button>
+                   </mat-menu>
+                 </div>
+                 <div *ngIf="selectedMessage" class="message-content">
+                   <mat-card *ngIf="selectedMessage" class="shadow-none">
+                     <mat-card-header>
+                       <img mat-card-avatar *ngIf="!selectedMessage.icon" src="{{selectedMessage.avatar}}"  class="ml-0">
+                       <mat-icon *ngIf="selectedMessage.icon" mat-card-avatar [ngClass]="selectedMessage.iconClass" class="ml-0">{{selectedMessage.icon}}</mat-icon>
+                       <mat-card-title>{{selectedMessage.from}}</mat-card-title>
+                       <mat-card-subtitle>{{selectedMessage.date | date: 'fullDate'}}</mat-card-subtitle>
+                     </mat-card-header>
+                     <mat-card-content class="pl-0">
+                       <div [innerHTML]="selectedMessage.body"></div>
+                     </mat-card-content>
+                   </mat-card>
+                 </div>
+               </mat-list-item>
+               </mat-list> -->
+         </div>
+      </div>
+   </div>
+</mat-sidenav-container>
+
